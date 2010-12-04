@@ -8,4 +8,4 @@ class Article(object):
         self.time = time
         self.tags = tags
     def save(self, db):
-        db[]
+        pass
