@@ -1,8 +1,10 @@
 from bottle import route, run, view, debug, static_file
+import models
+
 @route('/')
 @view('index')
 def hello():
-    return dict(username='ig')
+    return dict(articles = models.getarts(), tags = models.gettags())
 
 @route('/static/:path#.+#')
 def server_static(path):
@@ -13,4 +15,5 @@ def download(filename):
     return static_file(filename, root='download', download=filename)
 
 debug(True)
-run(reloader=True) 
+
+run(server='flup', reloader=True) 
