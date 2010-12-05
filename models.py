@@ -1,7 +1,7 @@
 #!/usr/local/bin/python
 # coding: utf-8
 
-import shelve
+import bottle
 import time
 
 class Article(object):
@@ -14,7 +14,7 @@ class Article(object):
         pass
     
 def getarts():
-    db = shelve.open("data1.db")
+    db = bottle.local.db
     tl = db['time']
     ret = []
     for a in tl:
@@ -23,17 +23,29 @@ def getarts():
     return ret
     
 def gettags():
-    db = shelve.open("data1.db")
+    db = bottle.local.db
     tags = db['tags']
     ret = []
     for t in tags:
         al = db[t]
         ret.append((t, len(al)))
     return ret
-            
+      
+def gettagarts(tag):
+    db = bottle.local.db
+    ret = []
+    if tag in db:
+        tl = db[tag]
+    else:
+         return ret
+    for a in tl:
+        art = db[a]
+        ret.insert(0, Article(art['title'], art['content'], art['time'], art['tags']))
+    return ret
     
 if __name__ == "__main__":  
-    db = shelve.open("data1.db")
+    import utils
+    db = utils.init_db().connect()
     db.clear()
     db['tags'] = ['engadege', 'weiphone']
     
@@ -51,7 +63,7 @@ if __name__ == "__main__":
 
 
         </div>'''
-    time = str(time.gmtime)
+    time = str(time.asctime())
     tags = ['weiphone']
     db['art1'] = {'title':title,'content':content,'time':time,'tags':tags}
     title = '''森海塞尔与阿迪达斯合作推出运动风格耳机产品'''
