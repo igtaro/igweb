@@ -26,16 +26,60 @@
 
 
 <body>
-    <div id="nav">
-        <div id="menus"><div class="menu"><ul><li class="current_page_item"><a href="http://192.168.1.102/~ig/" title="首页">ig</a></li><li class="page_item page-item-2"><a href="http://192.168.1.102/~ig/?page_id=2" title="关于">taro</a></li></ul></div>
-        </div>
-        <div id="search">
-            <form id="searchform" method="get" action="http://192.168.1.102/~ig/">
-                <input type="text" value="Search: type, hit enter" onfocus="if (this.value == 'Search: type, hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search: type, hit enter';}" size="35" maxlength="50" name="s" id="s" />
-                <input type="submit" id="searchsubmit" value="" />
-            </form>	
-        </div>
-    </div>
+    	<!-- header START --> 
+    	<div id="header"> 
+    		<div class="inner"> 
+    			<div class="content"> 
+    				<div class="caption"> 
+    					<h1 id="title"><a href="http://192.168.1.102/~ig/" title="又一个 WordPress 站点">ig&amp;taro的菠萝格</a></h1> 
+    					<div id="tagline">又一个 WordPress 站点</div> 
+    				</div> 
+     
+    				<!-- search box --> 
+    									<form action="http://192.168.1.102/~ig/" id="search_box" method="get"> 
+    						<div id="searchbox"> 
+    							<input type="text" id="searchtxt" class="textfield" name="s" value="" /> 
+    						</div> 
+    					</form> 
+    				<script type="text/javascript"> 
+    //<![CDATA[
+    	var searchbox = document.getElementById("searchbox");
+    	var searchtxt = document.getElementById("searchtxt");
+    	var tiptext = "请输入关键字...";
+    	if(searchtxt.value == "" || searchtxt.value == tiptext) {
+    		searchtxt.className += " searchtip";
+    		searchtxt.value = tiptext;
+    	}
+    	searchtxt.onfocus = function(e) {
+    		if(searchtxt.value == tiptext) {
+    			searchtxt.value = "";
+    			searchtxt.className = searchtxt.className.replace(" searchtip", "");
+    		}
+    	}
+    	searchtxt.onblur = function(e) {
+    		if(searchtxt.value == "") {
+    			searchtxt.className += " searchtip";
+    			searchtxt.value = tiptext;
+    		}
+    	}
+    //]]>
+    </script> 
+     
+    				<!-- navigation START --> 
+    				<ul id="navigation"> 
+     
+    					<li class="current_page_item"><a href="/">ig</a></li> 
+    					<li class="page_item page-item-2"><a href="/">taro</a></li> 
+    					
+     
+    				</ul> 
+    				<!-- navigation END --> 
+     
+    			</div> 
+    		</div> 
+    	</div> 
+    	<!-- header END --> 
+    
     <div id="container">
         <div id="content">
             <div id="main">
@@ -89,9 +133,37 @@
             <div class="fixed"></div>
         </div>
     </div>
+    <!-- footer START -->
+    
     <div id="footer">
-        <p id="developer-link"><a href="http://crowdfavorite.com" title="Custom WordPress development, design and backup services." rel="developer designer">Carrington Theme by Crowd Favorite</a></p>
-        <p id="generator-link">Proudly powered by <a href="http://wordpress.org/" rel="generator">WordPress</a></span> and <span id="theme-link"><a href="http://carringtontheme.com" title="Carrington theme for WordPress">Carrington</a></span>.</p>
-    </div><!--#footer -->
+    
+    	<div class="inner">
+    
+    		<div class="content">
+    
+    			<p id="about"> 
+    				版权所有 &copy; 2010 ig&amp;taro的菠萝格 | 基于 <a href="http://wordpress.org/">WordPress</a> | 主题由 <a href="http://www.neoease.com/">NeoEase</a> 提供			</p>
+    
+    
+    
+    			<ul id="admin">
+    
+    								<li><a href="http://192.168.1.102/~ig/wp-login.php">登录</a></li>
+    
+    			</ul>
+    
+    
+    
+    			<div class="fixed"></div>
+    
+    		</div>
+    
+    	</div>
+    
+    </div>
+    <!-- footer END -->
+    
+    
+    
 </body>
 </html>
